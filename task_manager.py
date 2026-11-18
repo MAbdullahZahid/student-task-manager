@@ -3,6 +3,7 @@ tasks = []
 next_id = 1
 
 def add_task(title):
+    """Add a new task after validating its title."""
     global next_id
 
     title = title.strip()
