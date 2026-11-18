@@ -23,6 +23,14 @@ class TestTaskManager(unittest.TestCase):
         self.assertTrue(result)
         self.assertTrue(task["completed"])
 
+    def test_complete_task_rejects_invalid_or_unknown_ids(self):
+        task = task_manager.add_task("Read chapter")
+
+        self.assertFalse(task_manager.complete_task(True))
+        self.assertFalse(task_manager.complete_task("1"))
+        self.assertFalse(task_manager.complete_task(999))
+        self.assertFalse(task["completed"])
+
     def test_delete_task(self):
         task = task_manager.add_task("Submit lab")
 

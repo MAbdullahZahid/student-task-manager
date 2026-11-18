@@ -22,6 +22,19 @@ def add_task(title):
 
     return task
 
+def complete_task(task_id):
+    """Mark a task as completed using its ID."""
+
+    if not isinstance(task_id, int) or isinstance(task_id, bool):
+        return False
+
+    for task in tasks:
+        if task["id"] == task_id:
+            task["completed"] = True
+            return True
+
+    return False
+
 def delete_task(task_id):
     """Delete a task using its ID."""
 
