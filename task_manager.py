@@ -16,5 +16,15 @@ def add_task(title):
 
     return task
 
+def complete_task(task_id):
+    """Mark a task as completed using its ID."""
+
+    for task in tasks:
+        if task["id"] == task_id:
+            task["completed"] = True
+            return True
+
+    return False
+
 def display_tasks():
     return tasks
