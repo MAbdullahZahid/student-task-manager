@@ -15,4 +15,4 @@ A Python console application for managing student tasks.
 - Git
 - GitHub
 
-Project status: Planning
+Project status: Completed
