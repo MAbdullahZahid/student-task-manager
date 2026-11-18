@@ -1,39 +1,54 @@
 
 tasks = []
-next_id = 1
+next_task_id = 1
 
-def add_task(title):
-    """Add a new task after validating its title."""
-    global next_id
 
-    title = title.strip()
+def add_task(description):
+    """Add a new task and return its details."""
+    global next_task_id
 
-    if not title:
-        raise ValueError("Task title cannot be empty.")
+    if not description or not description.strip():
+        return None
 
     task = {
-        "id": next_id,
-        "title": title,
+        "id": next_task_id,
+        "description": description.strip(),
         "completed": False
     }
 
     tasks.append(task)
-    next_id += 1
+    next_task_id += 1
 
     return task
 
-def delete_task(task_id):
-    """Delete a task using its ID."""
 
-    if not isinstance(task_id, int) or isinstance(task_id, bool):
-        return False
+def display_tasks():
+    """Return all tasks."""
+    return tasks
 
-    for index, task in enumerate(tasks):
+
+def complete_task(task_id):
+    """Mark a task as completed."""
+    for task in tasks:
         if task["id"] == task_id:
-            del tasks[index]
+            task["completed"] = True
             return True
 
     return False
 
-def display_tasks():
-    return tasks
+
+def delete_task(task_id):
+    """Delete a task using its ID."""
+    for task in tasks:
+        if task["id"] == task_id:
+            tasks.remove(task)
+            return True
+
+    return False
+
+
+def clear_tasks():
+    """Reset tasks and IDs. Mainly useful for testing."""
+    global next_task_id
+    tasks.clear()
+    next_task_id = 1
