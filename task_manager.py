@@ -3,7 +3,13 @@ tasks = []
 next_id = 1
 
 def add_task(title):
+    """Add a new task after validating its title."""
     global next_id
+
+    title = title.strip()
+
+    if not title:
+        raise ValueError("Task title cannot be empty.")
 
     task = {
         "id": next_id,
@@ -16,15 +22,15 @@ def add_task(title):
 
     return task
 
-def complete_task(task_id):
-    """Mark a task as completed using its ID."""
+def delete_task(task_id):
+    """Delete a task using its ID."""
 
     if not isinstance(task_id, int) or isinstance(task_id, bool):
         return False
 
-    for task in tasks:
+    for index, task in enumerate(tasks):
         if task["id"] == task_id:
-            task["completed"] = True
+            del tasks[index]
             return True
 
     return False
